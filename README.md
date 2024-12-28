@@ -1,4 +1,4 @@
-# API de Gestión de Tareas (con Node.js, Express y MongoDB)
+# API de Gestión de Tareas - Task manager (con Node.js, Express y MongoDB)
 
 [![Tests](https://github.com/<tu-usuario>/<tu-repositorio>/actions/workflows/node.js.yml/badge.svg)](https://github.com/<tu-usuario>/<tu-repositorio>/actions/workflows/node.js.yml)
 [![Código de Conducta](https://img.shields.io/badge/Contributor%20Covenant-2.1-494949.svg)](CODE_OF_CONDUCT.md)
