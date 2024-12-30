@@ -8,10 +8,17 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 3000;
+const whitelist = ['http://localhost:5173', ' https://task-manager-backend-474c.onrender.com']; // Lista de orígenes permitidos
 
 // Configuración cors
 const corsOptions = {
-  origin: 'http://localhost:5173', // URL del frontend
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) { // Verifica si el origen está en la lista blanca O si origin es undefined (peticiones desde el mismo origen)
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
   credentials: true, // Si necesitas enviar cookies o credenciales
   optionsSuccessStatus: 204
@@ -30,7 +37,7 @@ const options = {
     },
     servers: [
       {
-        url: `http://localhost:${port}/api`, // URL base de la API (con /api si es necesario)
+        url: `https://task-manager-backend-474c.onrender.com:${port}/api`, // URL base de la API (con /api si es necesario)
       },
     ],
   },
@@ -63,7 +70,7 @@ if (process.env.NODE_ENV === "development") {
   server = app.listen(port, () => {
     console.log(`Servidor escuchando en el puerto ${port}`);
     console.log(
-      `Documentación disponible en: http://localhost:${port}${swaggerDocsPath}`
+      `Documentación disponible en: https://task-manager-backend-474c.onrender.com${swaggerDocsPath}`
     );
   });
 
