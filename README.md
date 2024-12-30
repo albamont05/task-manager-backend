@@ -1,6 +1,10 @@
 # API de Gestión de Tareas - Task manager (con Node.js, Express y MongoDB)
 
-[![Tests](https://github.com/<tu-usuario>/<tu-repositorio>/actions/workflows/node.js.yml/badge.svg)](https://github.com/<tu-usuario>/<tu-repositorio>/actions/workflows/node.js.yml)
+## Aplicacion desplagada
+URL Base -> https://task-manager-backend-474c.onrender.com
+
+URL Swagger -> https://task-manager-backend-474c.onrender.com/api-docs/
+
 [![Código de Conducta](https://img.shields.io/badge/Contributor%20Covenant-2.1-494949.svg)](CODE_OF_CONDUCT.md)
 [![Licencia MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -38,27 +42,28 @@ Este proyecto es una API RESTful construida con Node.js, Express y MongoDB para 
 1.  Clona el repositorio:
 
     ```bash
-    git clone [https://github.com/](https://github.com/)<tu-usuario>/<tu-repositorio>.git
+    git@github.com:albamont05/task-manager-backend.git
     ```
 
 2.  Navega al directorio del proyecto:
 
     ```bash
-    cd <tu-repositorio>
+    cd task-manager-backend
     ```
 
 3.  Instala las dependencias:
 
     ```bash
-    npm install  # o yarn install o pnpm install
+    npm install
     ```
 
 4.  Crea un archivo `.env` en la raíz del proyecto y configura las variables de entorno (consulta el archivo `.env.example` para un ejemplo):
 
     ```
     MONGODB_URI=mongodb://localhost:27017/<nombre-de-tu-base-de-datos>
-    PORT=3000
     MONGODB_URI_TEST=mongodb://localhost:27017/<nombre-de-tu-base-de-datos-de-test>
+    NODE_ENV=development
+    PORT=5000
     ```
 
 ## Ejecución
