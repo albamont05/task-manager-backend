@@ -9,9 +9,9 @@ const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 3000;
 
-// Configuración más segura (permite solo solicitudes desde tu frontend)
+// Configuración cors
 const corsOptions = {
-  origin: 'http://localhost:5173', // Reemplaza con el origen de tu frontend
+  origin: 'http://localhost:5173', // URL del frontend
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
   credentials: true, // Si necesitas enviar cookies o credenciales
   optionsSuccessStatus: 204
@@ -19,7 +19,7 @@ const corsOptions = {
 
 const swaggerDocsPath = "/api-docs";
 
-// Configuración COMPLETA y CORRECTA de Swagger (OpenAPI 3.0)
+// Configuración Swagger (OpenAPI 3.0)
 const options = {
   definition: {
     openapi: "3.0.0",
