@@ -33,7 +33,7 @@ const mongoose = require('mongoose');
 
 /**
  * @swagger
- * /api/tasks:
+ * /tasks:
  *   get:
  *     summary: Obtiene la lista de todas las tareas, con opción de filtrar por estado.
  *     tags: [Tasks]
@@ -64,14 +64,14 @@ router.get('/', async (req, res) => {
         const tasks = await Task.find(filter);
         res.json(tasks);
     } catch (err) {
-        console.error("Error en GET /api/tasks:", err);
+        console.error("Error en GET /tasks:", err);
         res.status(500).json({ message: 'Error al obtener las tareas' });
     }
 });
 
 /**
  * @swagger
- * /api/tasks:
+ * /tasks:
  *   post:
  *     summary: Crea una nueva tarea
  *     tags: [Tasks]
@@ -102,7 +102,7 @@ router.post('/', [
         const newTask = await task.save();
         res.status(201).json(newTask);
     } catch (err) {
-        console.error("Error en POST /api/tasks:", err);
+        console.error("Error en POST /tasks:", err);
         res.status(500).json({ message: 'Error al crear la tarea' });
     }
 });
@@ -126,7 +126,7 @@ async function getTask(req, res, next) {
 
 /**
  * @swagger
- * /api/tasks/{id}:
+ * /tasks/{id}:
  *   get:
  *     summary: Obtiene una tarea por su ID
  *     tags: [Tasks]
@@ -209,7 +209,7 @@ router.patch('/:id', getTask, [
         const updatedTask = await res.task.save();
         res.json(updatedTask);
     } catch (err) {
-        console.error("Error en PATCH /api/tasks/:id:", err);
+        console.error("Error en PATCH /tasks/:id:", err);
         res.status(500).json({ message: 'Error al actualizar la tarea' });
     }
 });
@@ -219,7 +219,7 @@ router.delete('/:id', getTask, async (req, res) => {
         await Task.deleteOne({ _id: res.task._id });
         res.json({ message: 'Tarea eliminada' });
     } catch (err) {
-        console.error("Error en DELETE /api/tasks/:id:", err);
+        console.error("Error en DELETE /tasks/:id:", err);
         res.status(500).json({ message: 'Error al eliminar la tarea' });
     }
 });

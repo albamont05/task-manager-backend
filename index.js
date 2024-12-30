@@ -6,7 +6,17 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
 
 const app = express();
+const cors = require('cors');
 const port = process.env.PORT || 3000;
+
+// Configuración más segura (permite solo solicitudes desde tu frontend)
+const corsOptions = {
+  origin: 'http://localhost:5173', // Reemplaza con el origen de tu frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
+  credentials: true, // Si necesitas enviar cookies o credenciales
+  optionsSuccessStatus: 204
+};
+
 const swaggerDocsPath = "/api-docs";
 
 // Configuración COMPLETA y CORRECTA de Swagger (OpenAPI 3.0)
@@ -29,6 +39,7 @@ const options = {
 
 const specs = swaggerJsdoc(options);
 
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/api/tasks", tasksRouter);
 app.use(swaggerDocsPath, swaggerUi.serve, swaggerUi.setup(specs));
