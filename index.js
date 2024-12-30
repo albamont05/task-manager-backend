@@ -8,21 +8,6 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 3000;
-const whitelist = ['http://localhost:5173', ' https://task-manager-backend-474c.onrender.com']; // Lista de orígenes permitidos
-
-// Configuración cors
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) { // Verifica si el origen está en la lista blanca O si origin es undefined (peticiones desde el mismo origen)
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
-  credentials: true, // Si necesitas enviar cookies o credenciales
-  optionsSuccessStatus: 204
-};
 
 const swaggerDocsPath = "/api-docs";
 
@@ -37,7 +22,7 @@ const options = {
     },
     servers: [
       {
-        url: `https://task-manager-backend-474c.onrender.com:${port}/api`, // URL base de la API (con /api si es necesario)
+        url: `https://task-manager-backend-474c.onrender.com/api`, // URL base de la API (con /api si es necesario)
       },
     ],
   },
@@ -46,7 +31,7 @@ const options = {
 
 const specs = swaggerJsdoc(options);
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use("/api/tasks", tasksRouter);
 app.use(swaggerDocsPath, swaggerUi.serve, swaggerUi.setup(specs));
